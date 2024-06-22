@@ -4,29 +4,39 @@
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">Crear una publicación</h5>
-            <div class="d-flex align-items-center mb-3 gap-4">
+            <div class="d-flex align-items-center mb-3">
                 <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
                 <div>
                     <h6 class="mb-0">Nombre del Usuario</h6>
                     <p class="text-muted mb-0">Ocupación</p>
                 </div>
             </div>
-            <form action="/app/new-post" method="POST">
+            <form id="postForm">
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" name="post"
-                        placeholder="¿Qué quieres compartir?"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="¿Qué quieres compartir?"></textarea>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mt-2">
+                <!-- Imagen de vista previa oculta inicialmente -->
+                <img id="imagePreview" class="img-fluid mt-3" alt="Vista previa de la imagen">
+
+                <!-- Botones para Video, Documento y Foto -->
+                <div class="d-flex justify-content-between">
                     <div>
-                        <button type="button" class="btn btn-light"><i class="fas fa-image"></i> Foto</button>
-                        <button type="button" class="btn btn-light"><i class="fas fa-video"></i> Video</button>
-                        <button type="button" class="btn btn-light"><i class="fas fa-file-alt"></i> Documento</button>
+                        <div class="image-upload mt-3">
+                            <input type="file" class="form-control-file d-none" id="imageInput" accept="image/*" name="img">
+                            <label for="imageInput" class="btn btn-light"><i class="fas fa-image"></i> Seleccionar
+                                Imagen</label>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Publicar</button>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="submit" class="btn btn-primary">Publicar</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 
+
+
     {{> all-posts}}
+
 </div>

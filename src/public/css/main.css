@@ -14,3 +14,12 @@ body{
 .post-actions i {
     margin-right: 5px;
 }
+
+#imagePreview {
+    display: none;
+    max-width: 250px;
+    margin: 0 auto;
+}
+.logo {
+    width: 30%;
+}
