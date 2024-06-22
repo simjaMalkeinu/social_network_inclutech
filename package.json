@@ -1,0 +1,26 @@
+{
+  "name": "social_network_inclutech",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "errorhandler": "^1.5.1",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "fs-extra": "^11.2.0",
+    "mongoose": "^8.4.1",
+    "morgan": "^1.10.0",
+    "multer": "1.4.5-lts.1",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}
