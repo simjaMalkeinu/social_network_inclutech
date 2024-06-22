@@ -1,0 +1,16 @@
+body{
+    background-color: #f4f2ee;
+}
+
+.post-actions a {
+    color: #6c757d;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+.post-actions a:hover {
+    color: #0073b1;
+}
+.post-actions i {
+    margin-right: 5px;
+}

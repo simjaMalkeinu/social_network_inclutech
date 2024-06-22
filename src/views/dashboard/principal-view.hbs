@@ -1,0 +1,32 @@
+<!-- Contenido principal -->
+<div class="main-content col-md-8">
+    {{!-- Crear publicacion --}}
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Crear una publicación</h5>
+            <div class="d-flex align-items-center mb-3 gap-4">
+                <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
+                <div>
+                    <h6 class="mb-0">Nombre del Usuario</h6>
+                    <p class="text-muted mb-0">Ocupación</p>
+                </div>
+            </div>
+            <form action="/app/new-post" method="POST">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" name="post"
+                        placeholder="¿Qué quieres compartir?"></textarea>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div>
+                        <button type="button" class="btn btn-light"><i class="fas fa-image"></i> Foto</button>
+                        <button type="button" class="btn btn-light"><i class="fas fa-video"></i> Video</button>
+                        <button type="button" class="btn btn-light"><i class="fas fa-file-alt"></i> Documento</button>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{> all-posts}}
+</div>

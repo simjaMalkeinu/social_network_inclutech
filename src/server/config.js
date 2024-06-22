@@ -1,21 +1,19 @@
 const path = require("path");
 const express = require("express");
-
 const exphbs = require("express-handlebars");
-
+const methodOverride = require("method-override");
 const morgan = require("morgan");
 const multer = require("multer");
-
-const errorhandler = require('errorhandler')
-
+const errorhandler = require("errorhandler");
 const routes = require("../routes/index");
+const posts = require("../routes/posts");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 module.exports = (app) => {
   // settings
-  app.set("port", process.env.PORT || 3000);
-
-  app.set("views", path.join(__dirname, "views"));
-
+  app.set("port", process.env.PORT ?? 3000);
+  app.set("views", path.join(__dirname, "../views"));
   app.engine(
     ".hbs",
     exphbs.create({
@@ -24,31 +22,52 @@ module.exports = (app) => {
       layoutsDir: path.join(app.get("views"), "layouts"),
       extname: ".hbs",
       helpers: require("./helpers"),
+      runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+      },
     }).engine
   );
-
   app.set("view engine", ".hbs");
 
   // middlewares
-  app.use(morgan("common"));
+  app.use(express.urlencoded({ extended: false }));
+  app.use(methodOverride("_method"));
+  app.use(
+    session({
+      secret: "mysecretapp",
+      resave: true,
+      saveUninitialized: true,
+    })
+  );
+  app.use(morgan("dev"));
   app.use(
     multer({
       dest: path.join(__dirname, "../public/upload/temp"),
     }).single("image")
   );
+  app.use(flash());
 
-  app.use(express.urlencoded({ extended: false }));
+  app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    res.locals.error = req.flash("error");
+    res.locals.user = req.user || null;
+    next();
+  });
+
   app.use(express.json());
 
   // routes
   routes(app);
+  posts(app);
 
   // static files
-  app.use("/public", express.static(path.join(__dirname, "../public")));
+  app.use(express.static(path.join(__dirname, "../public")));
 
   // errors handlers
-  if('development' ===  app.get('env')){
-    app.use(errorhandler)
+  if ("development" === app.get("env")) {
+    app.use(errorhandler);
   }
 
   return app;
