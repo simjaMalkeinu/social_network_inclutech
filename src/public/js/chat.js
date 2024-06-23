@@ -1,11 +1,15 @@
 $(function () {
   const socket = io();
 
+  $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+
   const $messageForm = $("#message-form");
   const $messageBox = $("#message");
   const $userId = $("#user-id");
   const $userSend = $("#user-send");
-  const $chat = $("#chat");
+  const $chat = $("#chat-messages");
+
+  socket.emit('new chat', $userSend.val())
 
   $messageForm.submit((e) => {
     e.preventDefault();
@@ -18,16 +22,19 @@ $(function () {
   });
 
   socket.on("new message", (data) => {
-    // displayMsg(data);
+    displayMsg(data);
     console.log(data)
   });
 
 
   function displayMsg(data) {
+    const {msg, user} = data
+
     $chat.append(
-      `<p class="p-2 bg-secondary w-75 animate__animated animate__backInUp"><b>${data.nick}</b>: ${data.msg}</p>`
+      `<p style="margin-bottom: 0px;"><strong>${user.name}</strong>: ${msg}</p>
+            <p style="text-align: right; color:blue;">{{timeago this.timestamp}}</p>`
     );
-    const chat = document.querySelector("#chat");
-    chat.scrollTop = chat.scrollHeight;
+
+    $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
   }
 });

@@ -1,0 +1,21 @@
+<div class="list-group mt-4 col-md-8">
+    {{#each chats}}
+    <div class="card mb-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="text-center col-md-3">
+                    <img src="https://via.placeholder.com/100" class="rounded-circle" alt="Profile Picture">
+                </div>
+                <div class="col-md-9">
+                    <h2></h2>
+                    <h4>{{this.name}}</h4>
+                    <p><a href="#">{{user.email}}</a></p>
+                    <div>
+                        <button class="btn btn-primary" id="btn-start-chat" data-id="{{this.id}}" >Enviar mensaje</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

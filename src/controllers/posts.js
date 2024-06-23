@@ -1,4 +1,5 @@
 const Post = require("../models/Post.js");
+const User = require("../models/User.js");
 const path = require("path");
 const fs = require("fs-extra");
 
@@ -8,8 +9,10 @@ const ctrl = {};
 
 ctrl.all = async (req, res) => {
   const posts = await Post.find().sort({ date: "desc" });
+  const companies = await User.find({typeUser: "Empresa"})
   res.render("dashboard/principal-view", {
     posts,
+    companies
   });
 };
 

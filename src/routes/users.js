@@ -13,5 +13,6 @@ module.exports = (app) => {
   router.post("/users/signup", users.signupData);
   router.get("/users/myprofile", isAuthenticated, users.myprofile);
   router.get("/users/profile/:id", isAuthenticated, users.profile);
+  router.get("/users/profile/:id/chats", isAuthenticated, users.chats);
   app.use(router);
 };

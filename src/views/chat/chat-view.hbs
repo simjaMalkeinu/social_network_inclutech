@@ -3,11 +3,11 @@
         <div class="card-header">
             Chat Messages with <strong>{{receiver.name}}</strong>
         </div>
-        <div class="card-body chat-container" id="chat-messages">
+        <div class="card-body chat-container" id="chat-messages" style="overflow-y: scroll; max-height: 400px;">
+
             {{#each messages}}
-            <div class="chat-message {{this.class}}">
-                <strong>{{username}}:</strong> {{text}}
-            </div>
+            <p style="margin-bottom: 0px;"><strong>{{id_u_send.name}}</strong>: {{msg}}</p>
+            <p style="text-align: right; color:blue;">{{timeago this.timestamp}}</p>
             {{/each}}
         </div>
         <div class="card-footer">

@@ -1,15 +1,28 @@
 <!-- Barra lateral de perfil -->
 <div class="col-md-3">
-    <div class="card py-4">
+    <div class="card py-4 mb-4">
         <div class="text-center">
             <img src="https://via.placeholder.com/100" class="rounded-circle" alt="Profile Picture">
             <h4>{{user.name}}</h4>
-            <p>Ocupación</p>
-        </div>
-        <hr>
-        <div class="p-4">
-            <p><strong>Conexiones</strong></p>
-            <p>500+ conexiones</p>
+            <p>{{user.typeUser}}</p>
         </div>
     </div>
+
+    <h4 class="text-center mt-2">Compañias</h4>
+
+    {{#each companies}}
+    <a href="/users/profile/{{id}}" class="card mb-4">
+        <div class="card-body">
+
+            <div class="d-flex align-items-center gap-2">
+                <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
+                <div>
+                    <h6 class="mb-0">{{name}}</h6>
+                    <p class="text-muted mb-0">{{email}}</p>
+                </div>
+            </div>
+
+        </div>
+    </a>
+    {{/each}}
 </div>
