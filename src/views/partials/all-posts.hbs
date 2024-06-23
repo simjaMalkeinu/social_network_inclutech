@@ -1,22 +1,20 @@
 {{#each posts}}
 <div class="card mb-4">
     <div class="card-body">
-        <div class="d-flex align-items-center mb-2 gap-4">
+        <div class="d-flex align-items-center mb-2 gap-2">
             <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
-            <div>
-                <h6 class="mb-0">Nombre del Usuario</h6>
-                <small class="text-muted">Fecha de publicación</small>
-            </div>
+            <a href="/users/profile/{{id_user}}">
+                <h6 class="mb-0">{{this.user.name}}</h6>
+                <small class="text-muted">{{this.date}}</small>
+            </a>
         </div>
         <p class="card-text">{{text}}.</p>
         {{#if img}}
-        <img src="https://via.placeholder.com/400x200" class="img-fluid mb-2" alt="Publicación Imagen">
-        {{else}}
-        <img src="https://via.placeholder.com/600x200" class="img-fluid mb-2" alt="Publicación Imagen">
+        <img src="/upload/{{img}}" class="img-fluid mb-2" alt="Publicación Imagen">
         {{/if}}
         <div class="post-actions d-flex justify-content-between mt-3">
-            <a href="#" class="card-link"><i class="fas fa-thumbs-up"></i> Me gusta</a>
-            <a href="#" class="card-link"><i class="fas fa-comment"></i> Comentar</a>
+            <a href="#" class="card-link"><i class="fas fa-thumbs-up"></i> Me gusta {{this.likes}} </a>
+            <a href="/app/post/{{this.id}}" class="card-link"><i class="fas fa-comment"></i> Comentar</a>
             <a href="#" class="card-link"><i class="fas fa-share"></i> Compartir</a>
         </div>
     </div>

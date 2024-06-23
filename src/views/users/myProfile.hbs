@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{{user.avatar}}" class="card-img-top" alt="Avatar de {{user.name}}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{user.name}}</h5>
+                    <p class="card-text">{{user.headline}}</p>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h6>Contact Information</h6>
+                    <p class="card-text"><strong>Email:</strong> {{user.email}}</p>
+                    <p class="card-text"><strong>Phone:</strong> {{user.phone}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">Mis publicaciones</h4>
+                    <p class="card-text">{{user.bio}}</p>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>

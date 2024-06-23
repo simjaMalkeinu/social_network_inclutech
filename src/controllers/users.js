@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Post = require('../models/Post')
 const passport = require("passport");
 
 const ctrl = {};
@@ -6,6 +7,34 @@ const ctrl = {};
 ctrl.signin = (req, res) => {
   res.render("users/signin");
 };
+ctrl.logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
+
+ctrl.myprofile = (req, res) => {
+  res.render('users/myprofile')
+}
+
+ctrl.profile = async(req, res) => {
+
+  console.log(req.params)
+  try {
+    const user = await User.findById(req.params.id)
+    const posts = await Post.find({id_user: req.params.id})
+    res.render('dashboard/profile', {
+      user,
+      posts
+    })
+  } catch (error) {
+    res.redirect('/app')
+  }
+}
+
 
 ctrl.signinData = passport.authenticate("local", {
   successRedirect: "/app",

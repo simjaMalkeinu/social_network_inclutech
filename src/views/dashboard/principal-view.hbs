@@ -1,19 +1,21 @@
+{{> profile }}
+
 <!-- Contenido principal -->
 <div class="main-content col-md-8">
     {{!-- Crear publicacion --}}
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">Crear una publicación</h5>
-            <div class="d-flex align-items-center mb-3">
+            <div class="d-flex align-items-center mb-3 gap-2">
                 <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
                 <div>
                     <h6 class="mb-0">Nombre del Usuario</h6>
                     <p class="text-muted mb-0">Ocupación</p>
                 </div>
             </div>
-            <form id="postForm">
+            <form id="postForm" action="app/new-post" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" placeholder="¿Qué quieres compartir?"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="¿Qué quieres compartir?" name="post" >{{post}}</textarea>
                 </div>
                 <!-- Imagen de vista previa oculta inicialmente -->
                 <img id="imagePreview" class="img-fluid mt-3" alt="Vista previa de la imagen">
@@ -22,7 +24,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <div class="image-upload mt-3">
-                            <input type="file" class="form-control-file d-none" id="imageInput" accept="image/*" name="img">
+                            <input type="file" class="form-control-file d-none" id="imageInput" accept="image/*" name="image">
                             <label for="imageInput" class="btn btn-light"><i class="fas fa-image"></i> Seleccionar
                                 Imagen</label>
                         </div>

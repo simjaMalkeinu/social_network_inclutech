@@ -23,3 +23,9 @@ body{
 .logo {
     width: 30%;
 }
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
