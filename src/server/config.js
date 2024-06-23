@@ -12,6 +12,7 @@ const chat = require("../routes/chat");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
+const cors = require('cors')
 
 require("./passport");
 
@@ -64,6 +65,7 @@ module.exports = (app) => {
   });
 
   app.use(express.json());
+  app.use(cors());
 
   // routes
   routes(app);
