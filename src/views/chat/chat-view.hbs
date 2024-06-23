@@ -1,0 +1,26 @@
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            Chat Messages with <strong>{{receiver.name}}</strong>
+        </div>
+        <div class="card-body chat-container" id="chat-messages">
+            {{#each messages}}
+            <div class="chat-message {{this.class}}">
+                <strong>{{username}}:</strong> {{text}}
+            </div>
+            {{/each}}
+        </div>
+        <div class="card-footer">
+            <form id="message-form">
+                <div class="input-group">
+                    <input type="text" id="message" class="form-control" placeholder="Type a message">
+                    <input type="text" id="user-id" class="form-control" value="{{receiver.id}}" hidden>
+                    <input type="text" id="user-send" class="form-control" value="{{user.id}}" hidden>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

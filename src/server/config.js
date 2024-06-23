@@ -8,6 +8,7 @@ const errorhandler = require("errorhandler");
 const routes = require("../routes/index");
 const posts = require("../routes/posts");
 const users = require("../routes/users");
+const chat = require("../routes/chat");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -68,6 +69,7 @@ module.exports = (app) => {
   routes(app);
   posts(app);
   users(app);
+  chat(app)
 
   // static files
   app.use(express.static(path.join(__dirname, "../public")));

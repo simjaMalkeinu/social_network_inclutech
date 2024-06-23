@@ -10,7 +10,9 @@
         </div>
         <p class="card-text">{{text}}.</p>
         {{#if img}}
-        <img src="/upload/{{img}}" class="img-fluid mb-2" alt="Publicación Imagen">
+        <div class="d-flex justify-content-center">
+            <img src="/upload/{{img}}" class="img-fluid mb-2" alt="Publicación Imagen" style="max-height: 300px;">
+        </div>
         {{/if}}
         <div class="post-actions d-flex justify-content-between mt-3">
             <a href="#" class="card-link"><i class="fas fa-thumbs-up"></i> Me gusta {{this.likes}} </a>
