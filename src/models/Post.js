@@ -6,7 +6,7 @@ const PostSchema = new Schema({
   img: { type: String, required: false },
   date: { type: Date, default: Date.now },
   user: { type: Object },
-  id_user: { type: String },
+  id_user: { type: Schema.ObjectId },
   likes: { type: Number, default: 0 },
 });
 

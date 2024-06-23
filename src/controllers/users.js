@@ -16,8 +16,11 @@ ctrl.logout = (req, res, next) => {
   });
 };
 
-ctrl.myprofile = (req, res) => {
-  res.render('users/myprofile')
+ctrl.myprofile = async(req, res) => {
+  const posts = await Post.find({ id_user: req.user.id }).sort({ date: "desc" });
+  res.render("users/myprofile", {
+    posts,
+  });
 }
 
 ctrl.profile = async(req, res) => {

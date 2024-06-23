@@ -2,6 +2,8 @@ const Post = require("../models/Post.js");
 const path = require("path");
 const fs = require("fs-extra");
 
+const Comment = require("../models/Comment.js");
+
 const ctrl = {};
 
 ctrl.all = async (req, res) => {
@@ -13,9 +15,24 @@ ctrl.all = async (req, res) => {
 
 ctrl.post = async (req, res) => {
   const post = await Post.findById(req.params.id);
+  const comments = await Comment.find({id_post: req.params.id})
   res.render("dashboard/post-info", {
     post,
+    comments
   });
+};
+
+ctrl.postcomment = async (req, res) => {
+  const newComment = new Comment(req.body);
+
+  newComment.id_post = req.params.id_post;
+  newComment.id_user = req.id_user;
+  newComment.usser = req.user;
+
+  await newComment.save();
+
+  req.flash("success_msg", "Comentario guardado correctamente");
+  res.redirect("/app/post/" + req.params.id_post);
 };
 
 ctrl.add = async (req, res) => {
@@ -56,13 +73,6 @@ ctrl.add = async (req, res) => {
 
   req.flash("success_msg", "Publicacion guardada correctamente");
   res.redirect("/app");
-};
-
-ctrl.myPosts = async (req, res) => {
-  const posts = await Post.find({ user: req.user.id }).sort({ date: "desc" });
-  res.render("dashboard/principal-view", {
-    posts,
-  });
 };
 
 module.exports = ctrl;

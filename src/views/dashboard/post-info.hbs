@@ -1,38 +1,65 @@
 <div class="col-md-6">
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="d-flex align-items-center mb-2 gap-2">
-                <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
-                <a href="/users/profile/{{post.id_user}}">
-                    <h6 class="mb-0">{{post.user.name}}</h6>
-                    <small class="text-muted">{{post.date}}</small>
-                </a>
-            </div>
-            <p class="card-text">{{post.text}}.</p>
-            {{#if post.img}}
-            <img src="/upload/{{post.img}}" class="img-fluid mb-2" alt="Publicación Imagen">
-            {{/if}}
-            <div class="post-actions d-flex justify-content-between mt-3">
-                <a href="#" class="card-link"><i class="fas fa-thumbs-up"></i> Me gusta {{post.likes}} </a>
-                <a href="/app/post/{{post.id}}" class="card-link"><i class="fas fa-comment"></i> Comentar</a>
-                <a href="#" class="card-link"><i class="fas fa-share"></i> Compartir</a>
-            </div>
-        </div>
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2 gap-2">
+        <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
+        <a href="/users/profile/{{post.id_user}}">
+          <h6 class="mb-0">{{post.user.name}}</h6>
+          <small class="text-muted">{{timeago post.date}}</small>
+        </a>
+      </div>
+      <p class="card-text">{{post.text}}.</p>
+      {{#if post.img}}
+      <img src="/upload/{{post.img}}" class="img-fluid mb-2" alt="Publicación Imagen">
+      {{/if}}
+      <div class="post-actions d-flex justify-content-between mt-3">
+        <a href="#" class="card-link"><i class="fas fa-thumbs-up"></i> Me gusta {{post.likes}} </a>
+        <a href="#" class="card-link"><i class="fas fa-share"></i> Compartir</a>
+      </div>
     </div>
+  </div>
 </div>
 
-<div class="col-md-4">
-        <h2>Comentarios</h2>
-        {{#if post.comments.length}}
-          <ul class="list-group">
-            {{#each post.comments}}
-              <li class="list-group-item">
-                <strong>{{this.author}}:</strong> {{this.text}} <br>
-                <small class="text-muted">{{this.date}}</small>
-              </li>
-            {{/each}}
-          </ul>
-        {{else}}
-          <p>No hay comentarios.</p>
-        {{/if}}
+<div class="col-md-5">
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-3 gap-2">
+        <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
+        <div>
+          <h6 class="mb-0">{{user.name}}</h6>
+          <p class="text-muted mb-0">Ocupación</p>
+        </div>
       </div>
+      <blockquote>
+        <form id="postForm" action="/app/{{post.id}}/comment" method="POST">
+          <div class="form-group mb-2">
+            <textarea class="form-control" rows="3" placeholder="¿Qué quieres compartir?" name="comment"></textarea>
+          </div>
+          <!-- Botones para Video, Documento y Foto -->
+          <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-between align-items-center">
+              <button type="submit" class="btn btn-primary">Comentar</button>
+            </div>
+          </div>
+        </form>
+      </blockquote>
+    </div>
+  </div>
+
+  <h2>Comentarios</h2>
+
+  {{#if comments.length}}
+  <ul class="list-group">
+    {{#each comments}}
+    <li class="list-group-item">
+      <strong>{{this.user.name}}:</strong> {{this.comment}} <br>
+      <div class="d-flex justify-content-end">
+        <small class="text-muted ">{{timeago this.timestamp}}</small>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+  {{else}}
+  <p>No hay comentarios.</p>
+  {{/if}}
+</div>

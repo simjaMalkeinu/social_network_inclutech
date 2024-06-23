@@ -5,7 +5,7 @@
             <img src="https://via.placeholder.com/50" class="rounded-circle mr-3" alt="Profile Picture">
             <a href="/users/profile/{{id_user}}">
                 <h6 class="mb-0">{{this.user.name}}</h6>
-                <small class="text-muted">{{this.date}}</small>
+                <small class="text-muted">{{timeago this.date}}</small>
             </a>
         </div>
         <p class="card-text">{{text}}.</p>
