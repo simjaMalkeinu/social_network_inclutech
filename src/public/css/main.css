@@ -29,3 +29,8 @@ a{
     cursor: pointer;
     color: black;
 }
+
+.logo {
+    width: 46px;
+    height: 50px;
+}

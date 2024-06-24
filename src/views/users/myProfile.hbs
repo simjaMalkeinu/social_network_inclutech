@@ -5,14 +5,13 @@
                 <div class="text-center">
                     <img src="https://via.placeholder.com/100" class="rounded-circle" alt="Profile Picture">
                     <h4>{{user.name}}</h4>
-                    <p>Ocupación</p>
+                    <p><i>{{user.typeUser}}</i></p>
                 </div>
             </div>
             <div class="card mt-3">
                 <div class="card-body">
                     <h6>Contact Information</h6>
                     <p class="card-text"><strong>Email:</strong> {{user.email}}</p>
-                    <p class="card-text"><strong>Phone:</strong> {{user.phone}}</p>
                 </div>
             </div>
         </div>
@@ -20,7 +19,6 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="card-title">Mis publicaciones</h4>
-                    <p class="card-text">{{user.bio}}</p>
                 </div>
             </div>
             {{> all-posts}}
