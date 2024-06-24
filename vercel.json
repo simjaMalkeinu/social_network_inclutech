@@ -8,20 +8,8 @@
   ],
   "routes": [
     { 
-      "src": "/users/(.*)", 
-      "dest": "src/routes/users.js" 
-    },
-    { 
-      "src": "/app/posts/(.*)", 
-      "dest": "src/routes/posts.js" 
-    },
-    { 
-      "src": "/chat/(.*)", 
-      "dest": "src/routes/chat.js" 
-    },
-    {
       "src": "/(.*)", 
-      "dest": "/index.js" 
+      "dest": "src/index.js" 
     }
   ]
 }
