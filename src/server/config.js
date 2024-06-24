@@ -39,7 +39,7 @@ module.exports = (app) => {
   );
   app.set("view engine", ".hbs");
 
-  const uploadDir = path.join('__dirname, "../public/upload/temp');
+  const uploadDir = path.join(__dirname, "../public/upload/temp");
 
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -66,7 +66,7 @@ module.exports = (app) => {
   //     dest: path.join(__dirname, "../public/upload/temp"),
   //   }).single("image")
   // );
-  app.use(upload.single('image'));
+  app.use(upload.single("image"));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());
