@@ -6,7 +6,11 @@ const passport = require("passport");
 const ctrl = {};
 
 ctrl.signin = (req, res) => {
-  res.render("users/signin");
+  if (req.user) {
+    res.redirect("/app");
+  } else {
+    res.render("users/signin");
+  }
 };
 ctrl.logout = (req, res, next) => {
   req.logout((err) => {
@@ -65,9 +69,9 @@ ctrl.chats = async (req, res) => {
 
   chats = Array.from(chats.values());
 
-  chats = chats.filter(u => u.id !== req.user.id)
+  chats = chats.filter((u) => u.id !== req.user.id);
 
-  console.log(chats)
+  console.log(chats);
 
   res.render("users/chats", { chats });
 };
@@ -79,7 +83,11 @@ ctrl.signinData = passport.authenticate("local", {
 });
 
 ctrl.signup = (req, res) => {
-  res.render("users/signup");
+  if (req.user) {
+    res.redirect("/app");
+  } else {
+    res.render("users/signup");
+  }
 };
 
 ctrl.signupData = async (req, res) => {
@@ -98,7 +106,7 @@ ctrl.signupData = async (req, res) => {
       password,
       email,
       confirm_password,
-      typeUser
+      typeUser,
     });
   } else {
     const emailUser = await User.findOne({ email: email });

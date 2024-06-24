@@ -1,7 +1,11 @@
 const ctrl = {};
 
 ctrl.index = (req, res) => {
-  res.render('users/signin')
+  if (req.user) {
+    res.redirect("/app");
+  } else {
+    res.render('users/signin')
+  }
 };
 
 
