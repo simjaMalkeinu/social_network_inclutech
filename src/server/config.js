@@ -15,7 +15,7 @@ const passport = require("passport");
 const cors = require('cors')
 const MongoStore = require('connect-mongo')
 
-const { database } = require("./keys");
+const { database } = require("../keys");
 
 require("./passport");
 
