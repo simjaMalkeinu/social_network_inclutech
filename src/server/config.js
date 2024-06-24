@@ -12,8 +12,8 @@ const chat = require("../routes/chat");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const cors = require('cors')
-const MongoStore = require('connect-mongo')
+const cors = require("cors");
+const MongoStore = require("connect-mongo");
 
 const { database } = require("../keys");
 
@@ -39,6 +39,16 @@ module.exports = (app) => {
   );
   app.set("view engine", ".hbs");
 
+  const uploadDir = path.join('__dirname, "../public/upload/temp');
+
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, uploadDir);
+    },
+  });
+
+  const upload = multer({ storage: storage });
+
   // middlewares
   app.use(express.urlencoded({ extended: false }));
   app.use(methodOverride("_method"));
@@ -47,15 +57,16 @@ module.exports = (app) => {
       secret: "mysecretapp",
       resave: true,
       saveUninitialized: true,
-      store: MongoStore.create({ mongoUrl:  database.URI}),
+      store: MongoStore.create({ mongoUrl: database.URI }),
     })
   );
   app.use(morgan("dev"));
-  app.use(
-    multer({
-      dest: path.join(__dirname, "../public/upload/temp"),
-    }).single("image")
-  );
+  // app.use(
+  //   multer({
+  //     dest: path.join(__dirname, "../public/upload/temp"),
+  //   }).single("image")
+  // );
+  app.use(upload.single('image'));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());
@@ -75,10 +86,10 @@ module.exports = (app) => {
   routes(app);
   posts(app);
   users(app);
-  chat(app)
+  chat(app);
 
   // static files
-  app.use(express.static(path.join(__dirname, "../public")));
+  app.use("/public", express.static(path.join(__dirname, "../public")));
 
   // errors handlers
   if ("development" === app.get("env")) {
