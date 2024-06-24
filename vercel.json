@@ -9,15 +9,15 @@
   "routes": [
     { 
       "src": "/users/(.*)", 
-      "dest": "/routes/users.js" 
+      "dest": "src/routes/users.js" 
     },
     { 
       "src": "/app/posts/(.*)", 
-      "dest": "/routes/posts.js" 
+      "dest": "src/routes/posts.js" 
     },
     { 
       "src": "/chat/(.*)", 
-      "dest": "/routes/chat.js" 
+      "dest": "src/routes/chat.js" 
     },
     {
       "src": "/(.*)", 
