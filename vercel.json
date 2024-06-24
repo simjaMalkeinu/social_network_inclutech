@@ -2,14 +2,26 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/index.js",
-      "use": "@vercel/node"
+      "src": "index.js", 
+      "use": "@vercel/node" 
     }
   ],
   "routes": [
+    { 
+      "src": "/users/(.*)", 
+      "dest": "/routes/users.js" 
+    },
+    { 
+      "src": "/app/posts/(.*)", 
+      "dest": "/routes/posts.js" 
+    },
+    { 
+      "src": "/chat/(.*)", 
+      "dest": "/routes/chat.js" 
+    },
     {
-      "src": "/(.*)",
-      "dest": "src/index.js"
+      "src": "/(.*)", 
+      "dest": "/index.js" 
     }
   ]
 }
