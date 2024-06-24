@@ -13,6 +13,9 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const cors = require('cors')
+const MongoStore = require('connect-mongo')
+
+const { database } = require("./keys");
 
 require("./passport");
 
@@ -44,6 +47,7 @@ module.exports = (app) => {
       secret: "mysecretapp",
       resave: true,
       saveUninitialized: true,
+      store: MongoStore.create({ mongoUrl:  database.URI}),
     })
   );
   app.use(morgan("dev"));
