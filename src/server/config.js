@@ -39,16 +39,6 @@ module.exports = (app) => {
   );
   app.set("view engine", ".hbs");
 
-  const uploadDir = path.join(__dirname, "../public/upload/temp");
-
-  const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, uploadDir);
-    },
-  });
-
-  const upload = multer({ storage: storage });
-
   // middlewares
   app.use(express.urlencoded({ extended: false }));
   app.use(methodOverride("_method"));
@@ -61,12 +51,12 @@ module.exports = (app) => {
     })
   );
   app.use(morgan("dev"));
-  // app.use(
-  //   multer({
-  //     dest: path.join(__dirname, "../public/upload/temp"),
-  //   }).single("image")
-  // );
-  app.use(upload.single("image"));
+  app.use(
+    multer({
+      dest: path.join(__dirname, "../public/upload/temp"),
+    }).single("image")
+  );
+
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());
